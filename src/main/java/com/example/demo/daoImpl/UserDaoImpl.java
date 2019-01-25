@@ -1,11 +1,13 @@
 package com.example.demo.daoImpl;
 
 import com.example.demo.dao.UserDao;
+import com.example.demo.domains.Student;
 import com.example.demo.domains.User;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -50,12 +52,52 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    @Override
+    public boolean isRegister(String username) {
+        List<User> users = new UserDaoImpl().getAllUsers();
+        for(User user:users){
+            if(user.getName() == username)
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public List<User> getUsers(int type) {
+        List<User> users = new UserDaoImpl().getAllUsers();
+        String identity = "";
+        if (type == 0)
+            identity = "学生";
+        else if (type == 1)
+            identity = "研究生";
+        else if (type == 2)
+            identity = "教师";
+        List<User> result = new ArrayList<>();
+        for(User user:users){
+            if(user.getIdentity().equals(identity)){
+                result.add(user);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public User getUserByUserID(int userID) {
+        Session session = HibernateUtils.getSession();
+        Query query = session.createQuery("from User where id = "+userID );
+        User user  = (User)query.list().get(0);
+        HibernateUtils.closeSession(session);
+        return user;
+    }
+
     public static void main(String[] args){
 
-//        User user = new Student();
-//        user.setName("lml");
-//        user.setPassword("123");
-        new UserDaoImpl().getAllUsers();
+        User user = new Student();
+        user.setName("lml");
+        user.setPassword("123");
+        user.setDepartment("456");
+        user.setSchool("111");
+        new UserDaoImpl().getUserByUserID(1);
     }
 
 

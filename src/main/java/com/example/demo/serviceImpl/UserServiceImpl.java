@@ -49,6 +49,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Message> getAllMessage() {
-        return null;
+        return messageDao.getAllMessage();
+    }
+
+    @Override
+    public boolean isRegister(String username) {
+        return userDao.isRegister(username);
+    }
+
+    @Override
+    public List<User> getUsers(int type) {
+        return userDao.getUsers(type);
+    }
+
+    @Override
+    public User getUserByUserID(int userID) {
+        return userDao.getUserByUserID(userID);
     }
 }

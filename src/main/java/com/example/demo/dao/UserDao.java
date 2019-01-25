@@ -13,4 +13,10 @@ public interface UserDao {
 
 
     void changeIdentity(int userID,int type);
+
+    boolean isRegister(String username);
+
+    List<User> getUsers(int type);
+
+    User getUserByUserID(int userID);
 }

@@ -43,4 +43,32 @@ public interface UserService {
     *@Desciption : 管理员查看自己的信息
     */
     List<Message> getAllMessage();
+
+
+    /**
+    *@Author : LML
+    *@Date : 18:52 2019/1/25
+    *@Desciption : 用户名是否被注册
+    *@return :  false 不能注册   true  可以注册
+    */
+    boolean isRegister(String username);
+
+
+    /**
+    *@Author : LML
+    *@Date : 18:58 2019/1/25
+    *@Desciption : 每种用户的单独查询
+     * @param type 0->学生  1->研究生  2->教师
+    *@return : res
+    */
+    List<User> getUsers(int type);
+
+
+    /**
+    *@Author : LML
+    *@Date : 19:14 2019/1/25
+    *@Desciption : 根据id查用户
+    *@return : res
+    */
+    User getUserByUserID(int userID);
 }

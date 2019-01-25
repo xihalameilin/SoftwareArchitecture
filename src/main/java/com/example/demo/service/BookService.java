@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domains.Book;
-import com.example.demo.domains.Message;
+import com.example.demo.domains.Record;
 import com.example.demo.domains.User;
 import java.util.List;
 
@@ -16,5 +16,31 @@ public interface BookService {
 
    List<Book> getAllBook();
 
+   /**
+   *@Author : LML
+   *@Date : 19:05 2019/1/25
+   *@Desciption : 还书
+   *@return : res
+   */
    void returnBook(int userID,int bookID);
+
+
+   /**
+   *@Author : LML
+   *@Date : 19:04 2019/1/25
+   *@Desciption : 一句话描述
+    * @param identity 学生 教师 研究生
+   *@return : res
+   */
+    List<Book> getAllBook(String identity);
+
+
+    /**
+    *@Author : LML
+    *@Date : 19:07 2019/1/25
+    *@Desciption : 根据userid查询借书记录
+    *@return : res
+    */
+    List<Record> getRecordByUserID(int userID);
+
 }
