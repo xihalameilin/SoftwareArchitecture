@@ -10,4 +10,7 @@ public interface UserDao {
 
 
     List<User> getAllUsers();
+
+
+    void changeIdentity(int userID,int type);
 }

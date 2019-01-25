@@ -16,6 +16,26 @@ public abstract class User {
 
     private String identity;
 
+    private String school;
+
+    private String department;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public String getIdentity() {
         return identity;
     }
@@ -48,5 +68,9 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String toString(){
+        return "identity "+identity+ " id "+id;
     }
 }
