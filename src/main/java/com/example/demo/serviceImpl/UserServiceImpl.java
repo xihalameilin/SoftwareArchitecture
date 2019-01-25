@@ -14,23 +14,23 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao = new UserDaoImpl();
     private MessageDao messageDao = new MessageDaoImpl();
     @Override
-    public String login(String username, String password) {
+    public String login(String userID, String password) {
         List<User> users = userDao.getAllUsers();
         for(User user:users){
-            if(username.equals(user.getName())){
+            if(userID.equals(user.getUserid())){
                 if(password == user.getPassword()){
-                    return user.toString();
+                    return user.getIdentity();
                 }
                 else{
                     return "密码错误";
                 }
             }
         }
-        return "此用户不存在";
+        return "密码错误";
     }
 
     @Override
-    public void changeUserInfo(int userID,int type) {
+    public void changeUserInfo(String userID,int type) {
         userDao.changeIdentity(userID,type);
         new UserServiceImpl().notifyAdmin("ID为"+userID+"的用户更新了信息");
     }
@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isRegister(String username) {
-        return userDao.isRegister(username);
+    public boolean isRegister(String userID) {
+        return userDao.isRegister(userID);
     }
 
     @Override
@@ -63,7 +63,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUserID(int userID) {
+    public User getUserByUserID(String userID) {
         return userDao.getUserByUserID(userID);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 }

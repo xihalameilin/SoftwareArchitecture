@@ -9,4 +9,6 @@ public interface BookDao {
     void insertBook(Book book);
 
     List<Book> getAllBooks();
+
+    void updataBook(Book book);
 }

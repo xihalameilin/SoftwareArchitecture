@@ -25,6 +25,7 @@
         <mapping class="com.example.demo.domains.Teacher" />
         <mapping class="com.example.demo.domains.User" />
         <mapping class="com.example.demo.domains.Record" />
+        <mapping class="com.example.demo.domains.Message" />
 
     </session-factory>
 </hibernate-configuration>

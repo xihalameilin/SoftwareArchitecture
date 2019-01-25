@@ -5,11 +5,11 @@ import com.example.demo.domains.Record;
 import java.util.List;
 
 public interface RecordDao {
-    List<Record> getAllRecords(int userID);
+    List<Record> getAllRecords(String userID);
 
     void insertRecord(Record record);
 
-    int getBookNumAlreadyBorrowed(int userID);
+    int getBookNumAlreadyBorrowed(String userID);
 
-    void returnBook(int userID,int bookID);
+    void returnBook(String userID,int bookID);
 }

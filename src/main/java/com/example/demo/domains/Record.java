@@ -13,7 +13,7 @@ public class Record {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer userID;
+    private String userID;
 
 
     private Integer bookID;
@@ -36,11 +36,11 @@ public class Record {
         this.id = id;
     }
 
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

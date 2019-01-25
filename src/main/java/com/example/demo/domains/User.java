@@ -7,8 +7,7 @@ import javax.persistence.*;
 public abstract class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String userid;
 
     private String name;
 
@@ -46,12 +45,12 @@ public abstract class User {
 
     public abstract String borrow(Book book);
 
-    public Integer getId() {
-        return id;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getName() {
@@ -71,6 +70,6 @@ public abstract class User {
     }
 
     public String toString(){
-        return "identity "+identity+ " id "+id;
+        return "name "+name+" identity "+identity+ " id "+userid +" school "+ school +" department "+department;
     }
 }

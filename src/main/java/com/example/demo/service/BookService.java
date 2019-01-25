@@ -22,7 +22,7 @@ public interface BookService {
    *@Desciption : 还书
    *@return : res
    */
-   void returnBook(int userID,int bookID);
+   void returnBook(String userID,int bookID);
 
 
    /**
@@ -41,6 +41,10 @@ public interface BookService {
     *@Desciption : 根据userid查询借书记录
     *@return : res
     */
-    List<Record> getRecordByUserID(int userID);
+    List<Record> getRecordByUserID(String userID);
+
+    void updateBook(Book book);
+
+    List<Record> getAllLateRecord(String userID);
 
 }

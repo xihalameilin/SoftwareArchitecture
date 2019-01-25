@@ -13,7 +13,7 @@ public interface UserService {
     *@Desciption :  登录调用的方法
     *@return :  正确情况返回：  identity 学生 id 1 这样的字符串  错误返回 ： 密码错误  或者  用户不存在
     */
-    String login(String username,String password);
+    String login(String userID,String password);
 
 
     /**
@@ -22,7 +22,7 @@ public interface UserService {
     *@Desciption : 修改身份 type：0->学生  1->研究生  2->教师
     *@return : res
     */
-    void changeUserInfo(int userID,int type);
+    void changeUserInfo(String userID,int type);
 
 
 
@@ -51,7 +51,7 @@ public interface UserService {
     *@Desciption : 用户名是否被注册
     *@return :  false 不能注册   true  可以注册
     */
-    boolean isRegister(String username);
+    boolean isRegister(String userID);
 
 
     /**
@@ -70,5 +70,9 @@ public interface UserService {
     *@Desciption : 根据id查用户
     *@return : res
     */
-    User getUserByUserID(int userID);
+    User getUserByUserID(String userID);
+
+    void updateUser(User user);
 }
+
+

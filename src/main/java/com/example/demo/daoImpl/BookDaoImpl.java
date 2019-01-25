@@ -26,6 +26,15 @@ public class BookDaoImpl implements BookDao {
         return list;
     }
 
+    @Override
+    public void updataBook(Book book) {
+        Session session = HibernateUtils.getSession();
+        session.beginTransaction();
+        session.update(book);
+        session.getTransaction().commit();
+        HibernateUtils.closeSession(session);
+    }
+
     public static void main(String[] args){
 
         new BookDaoImpl().getAllBooks();

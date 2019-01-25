@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void changeIdentity(int userID, int type) {
+    public void changeIdentity(String userID, int type) {
         String identity = "";
         if (type == 0)
             identity = "学生";
@@ -53,10 +53,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean isRegister(String username) {
+    public boolean isRegister(String userID) {
         List<User> users = new UserDaoImpl().getAllUsers();
         for(User user:users){
-            if(user.getName() == username)
+            if(user.getUserid().equals(userID))
                 return false;
         }
         return true;
@@ -82,7 +82,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByUserID(int userID) {
+    public User getUserByUserID(String userID) {
         Session session = HibernateUtils.getSession();
         Query query = session.createQuery("from User where id = "+userID );
         User user  = (User)query.list().get(0);
@@ -90,14 +90,19 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
+    public void updateUser(User user) {
+        Session session = HibernateUtils.getSession();
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        HibernateUtils.closeSession(session);
+    }
+
     public static void main(String[] args){
 
-        User user = new Student();
-        user.setName("lml");
-        user.setPassword("123");
-        user.setDepartment("456");
-        user.setSchool("111");
-        new UserDaoImpl().getUserByUserID(1);
+
+
     }
 
 

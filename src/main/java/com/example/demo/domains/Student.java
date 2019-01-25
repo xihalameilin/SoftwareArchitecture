@@ -12,8 +12,7 @@ import java.util.List;
 @Table(name = "users")
 public class Student extends User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String userid;
 
     private String name;
 
@@ -28,7 +27,7 @@ public class Student extends User {
 
     @Override
     public String borrow(Book book) {
-        int already = new RecordDaoImpl().getBookNumAlreadyBorrowed(id);
+        int already = new RecordDaoImpl().getBookNumAlreadyBorrowed(userid);
         if(already>=DefaultConstant.STUDNET_MAX_NUM){
             return "最多借阅10本,不能再借阅";
         }
@@ -42,19 +41,21 @@ public class Student extends User {
             record.setBookname(book.getName());
             record.setFlag(1);
             record.setTime(new Date());
-            record.setUserID(id);
+            record.setUserID(userid);
             new RecordDaoImpl().insertRecord(record);
             return "教育书籍借阅成功";
         }
 
     }
 
-    public Integer getId() {
-        return id;
+    @Override
+    public String getUserid() {
+        return userid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getName() {

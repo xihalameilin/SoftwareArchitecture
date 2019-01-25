@@ -7,8 +7,7 @@ import javax.persistence.*;
 @Table(name = "users")
 public class Admin extends User{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String userid;
 
     private String name;
 
@@ -27,12 +26,14 @@ public class Admin extends User{
         return null;
     }
 
-    public Integer getId() {
-        return id;
+    @Override
+    public String getUserid() {
+        return userid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getName() {
