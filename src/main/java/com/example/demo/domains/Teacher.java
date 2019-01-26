@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table( name = "users")
+@DiscriminatorValue("teacher")
 public class Teacher extends User {
 
     @Id
@@ -17,12 +18,37 @@ public class Teacher extends User {
 
     private String password;
 
+    private String school;
+
+    private String department;
+
+    private final String identity = "老师";
+
+    @Override
+    public String getSchool() {
+        return school;
+    }
+
+    @Override
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    @Override
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     @Override
     public String getIdentity() {
         return identity;
     }
 
-    private final String identity = "老师";
 
 
 

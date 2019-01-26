@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="flag",discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorValue("user")
 public abstract class User {
 
     @Id
@@ -18,6 +21,8 @@ public abstract class User {
     private String school;
 
     private String department;
+
+
 
     public String getSchool() {
         return school;

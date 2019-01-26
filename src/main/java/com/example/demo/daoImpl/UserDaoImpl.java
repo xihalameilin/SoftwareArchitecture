@@ -3,6 +3,7 @@ package com.example.demo.daoImpl;
 import com.example.demo.dao.UserDao;
 import com.example.demo.domains.Student;
 import com.example.demo.domains.User;
+import com.example.demo.serviceImpl.UserServiceImpl;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -16,7 +17,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insertUser(User user) {
         Session session = HibernateUtils.getSession();
+        session.beginTransaction();
         session.save(user);
+        session.getTransaction().commit();
         HibernateUtils.closeSession(session);
     }
 
@@ -101,7 +104,13 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args){
 
-
+        User user = new Student();
+        user.setSchool("nju");
+        user.setDepartment("se");
+        user.setName("lml");
+        user.setUserid("lml");
+        user.setPassword("123");
+        new UserDaoImpl().getAllUsers();
 
     }
 

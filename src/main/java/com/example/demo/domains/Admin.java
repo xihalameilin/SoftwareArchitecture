@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@DiscriminatorValue("admin")
 public class Admin extends User{
     @Id
     private String userid;
@@ -12,6 +13,30 @@ public class Admin extends User{
     private String name;
 
     private String password;
+
+    private String school;
+
+    private String department;
+
+    @Override
+    public String getSchool() {
+        return school;
+    }
+
+    @Override
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    @Override
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     @Override
     public String getIdentity() {

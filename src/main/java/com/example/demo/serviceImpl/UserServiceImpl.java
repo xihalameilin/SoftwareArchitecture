@@ -5,6 +5,8 @@ import com.example.demo.dao.UserDao;
 import com.example.demo.daoImpl.MessageDaoImpl;
 import com.example.demo.daoImpl.UserDaoImpl;
 import com.example.demo.domains.Message;
+import com.example.demo.domains.Student;
+import com.example.demo.domains.Teacher;
 import com.example.demo.domains.User;
 import com.example.demo.service.UserService;
 
@@ -70,5 +72,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         userDao.updateUser(user);
+    }
+
+    public static void main(String[] args){
+        User user = new Teacher();
+        user.setSchool("nju");
+        user.setDepartment("se");
+        user.setName("lq");
+        user.setUserid("lq");
+        user.setPassword("123");
+        new UserServiceImpl().insertUser(user);
     }
 }

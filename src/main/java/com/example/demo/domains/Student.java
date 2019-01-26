@@ -2,14 +2,13 @@ package com.example.demo.domains;
 
 
 import com.example.demo.daoImpl.RecordDaoImpl;
-import com.example.demo.daoImpl.UserDaoImpl;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
+@DiscriminatorValue("student")
 public class Student extends User {
     @Id
     private String userid;
@@ -19,6 +18,30 @@ public class Student extends User {
     private String password;
 
     private final String identity = "学生";
+
+    private String school;
+
+    private String department;
+
+    @Override
+    public String getSchool() {
+        return school;
+    }
+
+    @Override
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    @Override
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     @Override
     public String getIdentity() {
