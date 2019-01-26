@@ -42,6 +42,19 @@ public class UserController {
     @GetMapping("/editpersonal/{userid}/{username}/{briefcase}/{school}")
     public void editpersonal(@PathVariable("userid")String userid,@PathVariable("username")String username,
                              @PathVariable("briefcase")String briefcase,@PathVariable("school")String school){
+       User u = userService.getUserByUserID(userid);
+       String identity = u.getIdentity();
+        User user = new Student();
+        if(identity.equals("学生"))
+            user = new Student();
+        else if(identity.equals("教师"))
+            user = new Teacher();
+        else if(identity.equals("研究生"))
+            user = new PostGraduate();
+        user.setSchool(school);
+        user.setName(username);
+        user.setDepartment(briefcase);
+        userService.updateUser(user);
 
     }
 
